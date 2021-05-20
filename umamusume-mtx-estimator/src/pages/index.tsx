@@ -1,11 +1,18 @@
 import React from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Header from "../components/Header"
+import ConfigForm from "../components/ConfigForm"
 
 const MainPage: React.FC = () =>
   <div className="container">
     <div className="row my-3">
-      <div className="col">
-        <h1 className="text-center">ウマ娘ガチャ回数推定機</h1>
+      <div className="col text-center">
+        <Header />
+      </div>
+    </div>
+    <div className="row my-3 justify-content-center">
+      <div className="col-sm-8">
+        <ConfigForm />
       </div>
     </div>
   </div>
