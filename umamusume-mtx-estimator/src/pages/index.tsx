@@ -35,14 +35,14 @@ const listItemStyles = {
   marginBottom: 30,
 }
 
-const linkStyle = {
+const linkStyle: React.CSSProperties = {
   color: "#8954A8",
   fontWeight: "bold",
   fontSize: 16,
   verticalAlign: "5%",
 }
 
-const docLinkStyle = {
+const docLinkStyle: React.CSSProperties = {
   ...linkStyle,
   listStyleType: "none",
   marginBottom: 24,
@@ -62,7 +62,7 @@ const docLink = {
   color: "#8954A8",
 }
 
-const badgeStyle = {
+const badgeStyle: React.CSSProperties = {
   color: "#fff",
   backgroundColor: "#088413",
   border: "1px solid #088413",
