@@ -1,13 +1,45 @@
 import * as React from 'react'
+import { useState } from 'react';
+import { useLocalStorageState } from '../hooks/useLocalStorageState';
+import { tryParseFloat, tryParseInt } from '../services/utility';
 
 const ConfigForm: React.FC = () => {
-  const [pickupProb, setPickupProb] = React.useState('0.75');
-  const [wantedCardCount, setWantedCardCount] = React.useState('5');
-  const [nowJewelCount, setNowJewelCount] = React.useState('15000');
+  const [pickupProb, setPickupProb] = useLocalStorageState('pickupProb', '0.75');
+  const [wantedCardCount, setWantedCardCount] = useLocalStorageState('wantedCardCount', '5');
+  const [nowJewelCount, setNowJewelCount] = useLocalStorageState('nowJewelCount', '15000');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const calc = () => {
+    // 入力バリデーション
+    const pickupProbFloat = tryParseFloat(pickupProb);
+    if (pickupProbFloat === null) {
+      setErrorMessage('PUの確率は正しく入力してください。');
+      return;
+    }
+    if (pickupProbFloat < 0.0 || 100.0 < pickupProbFloat) {
+      setErrorMessage('PUの確率は0％以上100％以下です。');
+      return;
+    }
+    const wantedCardCountInt = parseInt(wantedCardCount, 10);
+    const nowJewelCountInt = tryParseInt(nowJewelCount);
+    if (nowJewelCountInt === null) {
+      setErrorMessage('ジュエルの数は正しく入力してください。');
+      return;
+    }
+    if (nowJewelCountInt < 0) {
+      setErrorMessage('ジュエルの数はマイナスになりません。');
+      return;
+    }
+    console.log(`${pickupProbFloat} ${wantedCardCountInt} ${nowJewelCountInt}`);
+    setErrorMessage('');
+  };
 
   return <form>
+    {errorMessage !== ''
+      ? <div className="alert alert-danger" role="alert"><strong>エラー</strong> - {errorMessage}</div>
+      : <></>}
     <div className="form-group">
-      <label htmlFor="pickupProb" className="form-label">ピックアップの確率(％単位)</label>
+      <label htmlFor="pickupProb" className="form-label">ピックアップ(PU)の確率(％単位)</label>
       <input id="pickupProb" className="form-control" placeholder="ピックアップの確率(％単位)" value={pickupProb} onChange={(e) => {
         setPickupProb(e.currentTarget.value)
       }} />
@@ -30,7 +62,7 @@ const ConfigForm: React.FC = () => {
         setNowJewelCount(e.currentTarget.value)
       }} />
     </div>
-    <button type="button" className="btn btn-lg btn-outline-primary my-3 w-100"><strong>計算！</strong></button>
+    <button type="button" className="btn btn-lg btn-outline-primary my-3 w-100" onClick={calc}><strong>計算！</strong></button>
   </form>
 }
 
