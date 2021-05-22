@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
-type ValuePair = [string, React.Dispatch<React.SetStateAction<string>>];
+type ValuePair = [string, React.Dispatch<React.SetStateAction<string>>]
 
 export const useLocalStorageState = (key: string, defaultValue: string): ValuePair => {
-  const [state, setState] = useState(defaultValue);
+  const [state, setState] = useState(defaultValue)
 
   useEffect(() => {
-    const temp = window.localStorage.getItem(key);
+    const temp = window.localStorage.getItem(key)
     if (temp !== null) {
-      setState(temp);
+      setState(temp)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    window.localStorage.setItem(key, state);
-  }, [state]);
+    window.localStorage.setItem(key, state)
+  }, [state])
 
   return [
     state, setState
-  ];
+  ]
 }

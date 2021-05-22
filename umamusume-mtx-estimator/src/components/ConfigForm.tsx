@@ -1,38 +1,38 @@
+import { navigate } from 'gatsby'
 import * as React from 'react'
-import { useState } from 'react';
-import { useLocalStorageState } from '../hooks/useLocalStorageState';
-import { tryParseFloat, tryParseInt } from '../services/utility';
+import { useState } from 'react'
+import { useLocalStorageState } from '../hooks/useLocalStorageState'
+import { tryParseFloat, tryParseInt } from '../services/utility'
 
 const ConfigForm: React.FC = () => {
-  const [pickupProb, setPickupProb] = useLocalStorageState('pickupProb', '0.75');
-  const [wantedCardCount, setWantedCardCount] = useLocalStorageState('wantedCardCount', '5');
-  const [nowJewelCount, setNowJewelCount] = useLocalStorageState('nowJewelCount', '15000');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [pickupProb, setPickupProb] = useLocalStorageState('pickupProb', '0.75')
+  const [wantedCardCount, setWantedCardCount] = useLocalStorageState('wantedCardCount', '5')
+  const [nowJewelCount, setNowJewelCount] = useLocalStorageState('nowJewelCount', '15000')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const calc = () => {
     // 入力バリデーション
-    const pickupProbFloat = tryParseFloat(pickupProb);
+    const pickupProbFloat = tryParseFloat(pickupProb)
     if (pickupProbFloat === null) {
-      setErrorMessage('PUの確率は正しく入力してください。');
-      return;
+      setErrorMessage('PUの確率は正しく入力してください。')
+      return
     }
     if (pickupProbFloat < 0.0 || 100.0 < pickupProbFloat) {
-      setErrorMessage('PUの確率は0％以上100％以下です。');
-      return;
+      setErrorMessage('PUの確率は0％以上100％以下です。')
+      return
     }
-    const wantedCardCountInt = parseInt(wantedCardCount, 10);
-    const nowJewelCountInt = tryParseInt(nowJewelCount);
+    const nowJewelCountInt = tryParseInt(nowJewelCount)
     if (nowJewelCountInt === null) {
-      setErrorMessage('ジュエルの数は正しく入力してください。');
-      return;
+      setErrorMessage('ジュエルの数は正しく入力してください。')
+      return
     }
     if (nowJewelCountInt < 0) {
-      setErrorMessage('ジュエルの数はマイナスになりません。');
-      return;
+      setErrorMessage('ジュエルの数はマイナスになりません。')
+      return
     }
-    console.log(`${pickupProbFloat} ${wantedCardCountInt} ${nowJewelCountInt}`);
-    setErrorMessage('');
-  };
+    setErrorMessage('')
+    navigate('/result')
+  }
 
   return <form>
     {errorMessage !== ''
