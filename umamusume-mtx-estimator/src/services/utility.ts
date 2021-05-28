@@ -1,23 +1,23 @@
 export const tryParseInt = (s: string) => {
   try {
-    const result = parseInt(s, 10);
+    const result = parseInt(s, 10)
     if (isNaN(result)) {
-      return null;
+      return null
     }
-    return result;
+    return result
   } catch {
-    return null;
+    return null
   }
-};
+}
 
 export const tryParseFloat = (s: string) => {
   try {
-    const result = parseFloat(s);
+    const result = parseFloat(s)
     if (isNaN(result)) {
-      return null;
+      return null
     }
-    return result;
+    return result
   } catch {
-    return null;
+    return null
   }
-};
+}
