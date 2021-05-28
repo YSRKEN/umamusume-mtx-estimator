@@ -42,7 +42,7 @@ const ResultPage: React.FC = () => {
   }, [pickupProb, wantedCardCount, nowJewelCount]);
 
   return <>
-    <title>ウマ娘ガチャ回数推定機</title>
+    <title>ウマ娘ガチャ回数推定機(β)</title>
     <div className="container">
       <div className="row my-3">
         <div className="col text-center">

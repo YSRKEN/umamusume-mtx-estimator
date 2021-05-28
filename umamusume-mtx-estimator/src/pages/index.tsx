@@ -7,7 +7,7 @@ const MainPage: React.FC = () => <>
   <div className="container">
     <div className="row my-3">
       <div className="col text-center">
-        <h1 className="text-nowrap">ウマ娘ガチャ回数推定機</h1>
+        <h1 className="text-nowrap">ウマ娘ガチャ回数推定機(β)</h1>
       </div>
     </div>
     <div className="row my-3 justify-content-center">
