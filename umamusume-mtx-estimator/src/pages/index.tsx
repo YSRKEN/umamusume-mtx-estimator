@@ -7,13 +7,13 @@ const MainPage: React.FC = () => <>
   <div className="container">
     <div className="row my-3">
       <div className="col text-center">
-        <h1 className="text-nowrap">ウマ娘ガチャ回数推定機(β)</h1>
+        <h1 className="text-nowrap">ウマ娘ガチャ回数推定機</h1>
       </div>
     </div>
     <div className="row">
       <div className="col text-center">
-        <span className="d-inline-block">最終更新：2021/05/28</span><br />
-        <span className="d-inline-block me-3"><a href="#" rel="noreferrer" target="_blank">使い方</a></span>
+        <span className="d-inline-block">最終更新：2021/06/02</span><br />
+        <span className="d-inline-block me-3"><a href="https://twitter.com/YSRKEN/status/1398294588230569988" rel="noreferrer" target="_blank">使い方</a></span>
         <span className="d-inline-block me-3"><a href="https://github.com/YSRKEN/umamusume-mtx-estimator/tree/develop" rel="noreferrer" target="_blank">GitHub</a> </span>
         <span><a href="https://twitter.com/YSRKEN" rel="noreferrer" target="_blank">作者のTwitter</a></span>
       </div>
